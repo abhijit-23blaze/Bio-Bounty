@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
-        backgroundColor: Colors.green[200],
+        backgroundColor: Colors.green[400],
         title: Row(
           children: [
             Image(
@@ -51,9 +51,9 @@ class _HomePageState extends State<HomePage> {
       ),
       body: _page(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.green[200],
+        backgroundColor: Colors.green[400],
         unselectedItemColor: Colors.white,
-        selectedItemColor: Colors.green,
+        selectedItemColor: Colors.black,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         items: [
@@ -88,29 +88,89 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class DefaultPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text('Default Page'),
-    );
-  }
-}
+
+
+
+
+
+
 
 class LeaderboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Leaderboard Page'),
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          // gradient: LinearGradient(
+          //   begin: Alignment.topCenter,
+          //   end: Alignment.bottomCenter,
+          //   colors: [Color(0xFF91EAE4), Color(0xFF86A8E7)],
+          // ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(height: 20),
+            Text(
+              '🏁Leaderboard🏁',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black),
+            ),
+            SizedBox(height: 20),
+            _buildLeaderboardItem(1, 'Abhijit', 500, 'assets/john_doe.jpg', gradientColors: [Color(0xFFFFAFBD), Color(0xFFC9FFBF)]),
+            _buildLeaderboardItem(2, 'Riotwan', 450, 'assets/jane_smith.jpg', gradientColors: [Color(0xFF74EBD5), Color(0xFFACB6E5)]),
+            _buildLeaderboardItem(3, 'Naman', 400, 'assets/alice_johnson.jpg', gradientColors: [Color(0xFFFFE3E3), Color(0xFFDBE7FC)]),
+          ],
+        ),
+      ),
     );
   }
-}
 
-class ProfilePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text('Profile Page'),
+  Widget _buildLeaderboardItem(int rank, String username, int score, String photoPath, {List<Color>? gradientColors}) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: Container(
+        padding: EdgeInsets.all(15),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          gradient: LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: gradientColors ?? [Color(0xFF74EBD5), Color(0xFFACB6E5)],
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 30,
+                  backgroundImage: AssetImage(photoPath),
+                ),
+                SizedBox(width: 20),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Rank $rank',
+                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
+                    ),
+                    Text(
+                      '$username',
+                      style: TextStyle(fontSize: 16, color: Colors.black),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Text(
+              'Bio Points: $score',
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

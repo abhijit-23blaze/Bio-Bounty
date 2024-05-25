@@ -19,8 +19,8 @@ class VisionPage extends StatefulWidget {
 
 class _VisionPageState extends State<VisionPage> {
   List<CoolDropdownItem<String>> dropdownItemList = [];
-  List<String> models = ['Plant', 'Animal'];
-  String? _selectedModel = 'Animal';
+  List<String> models = ['Plant🪴', 'Animal🐮'];
+  String? _selectedModel = 'Animal🐮';
   XFile? image;
   GeminiChatController controller = Get.find();
   TextEditingController textController = TextEditingController();
@@ -68,7 +68,7 @@ class _VisionPageState extends State<VisionPage> {
           Container(
             margin: EdgeInsets.only(bottom: 20, top: 20),
             padding: EdgeInsets.symmetric(horizontal: 20),
-            height: 50.h,
+            height: 30.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.w),
               color: Colors.white, // Setting a white background color
@@ -153,7 +153,7 @@ class _VisionPageState extends State<VisionPage> {
                             controller.streamAnswer.toString(), image!);
                         Get.snackbar(
                           'Success', 'Species saved successfully!',
-                          backgroundColor: Colors.greenAccent,
+                          backgroundColor: Colors.green,
                           titleText: Text('Saved', style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold)),
@@ -166,13 +166,13 @@ class _VisionPageState extends State<VisionPage> {
             ),
           ),
           Container(
-            width: 50.h,
+
             // Set to fill the entire width of the screen
-            height: 80.h,
+            height: 40.h,
             padding: EdgeInsets.symmetric(horizontal: 130),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.w),
-              color: const Color.fromARGB(255, 255, 255, 255),
+              color: const Color.fromARGB(0, 255, 255, 255),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -230,6 +230,7 @@ class _VisionPageState extends State<VisionPage> {
               ],
             ),
           ),
+          SizedBox(height : 10.h)
         ],
       ),
     );

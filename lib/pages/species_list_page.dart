@@ -73,7 +73,7 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
                   ),
                   SizedBox(height: 16.0),
-                  Divider(thickness: 2, color: Colors.black),
+
                   SizedBox(height: 16.0),
                   Text(
                     'Discovered Species: ${speciesList.length}',
@@ -123,7 +123,7 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
 
   Widget _buildSpeciesCard(String imagePath, String prompt) {
     return Card(
-      color: Colors.lightGreen[200],
+      color: Colors.green[400],
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
