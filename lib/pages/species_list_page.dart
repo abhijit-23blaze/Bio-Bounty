@@ -34,7 +34,7 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
@@ -54,7 +54,7 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
                     style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                   SizedBox(height: 8.0),
@@ -62,7 +62,7 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
                     'Skill Level 1',
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                   SizedBox(height: 8.0),
@@ -73,14 +73,14 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
                   ),
                   SizedBox(height: 16.0),
-                  Divider(thickness: 2, color: Colors.white),
+                  Divider(thickness: 2, color: Colors.black),
                   SizedBox(height: 16.0),
                   Text(
                     'Discovered Species: ${speciesList.length}',
                     style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                 ],
@@ -123,7 +123,7 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
 
   Widget _buildSpeciesCard(String imagePath, String prompt) {
     return Card(
-      color: Colors.lightGreen[100],
+      color: Colors.lightGreen[200],
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
