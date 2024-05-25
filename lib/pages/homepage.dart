@@ -145,7 +145,7 @@ class LeaderboardPage extends StatelessWidget {
             ),
             SizedBox(height: 20),
             _buildLeaderboardItem(1, 'Abhijit', 500, 'assets/john_doe.jpg', gradientColors: [Color(0xFFFFAFBD), Color(0xFFC9FFBF)]),
-            _buildLeaderboardItem(2, 'Riotwan', 450, 'assets/jane_smith.jpg', gradientColors: [Color(0xFF74EBD5), Color(0xFFACB6E5)]),
+            _buildLeaderboardItem(2, 'Ritovan', 450, 'assets/jane_smith.jpg', gradientColors: [Color(0xFF74EBD5), Color(0xFFACB6E5)]),
             _buildLeaderboardItem(3, 'Naman', 400, 'assets/alice_johnson.jpg', gradientColors: [Color(0xFFFFE3E3), Color(0xFFDBE7FC)]),
           ],
         ),
