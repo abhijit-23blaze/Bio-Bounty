@@ -61,7 +61,7 @@ PageController controller=PageController(initialPage: 0);
       case 2:
         return VisionPage();
       default:
-      return ChatPage();
+      return VisionPage();
           
     }
     

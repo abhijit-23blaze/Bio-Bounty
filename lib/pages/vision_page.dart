@@ -1,12 +1,14 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:leaf_lens/controllers/gemini_controller.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:cool_dropdown/models/cool_dropdown_item.dart';
+import 'species_list_page.dart';
 
 class VisionPage extends StatefulWidget {
   const VisionPage({super.key});
@@ -17,14 +19,12 @@ class VisionPage extends StatefulWidget {
 
 class _VisionPageState extends State<VisionPage> {
   List<CoolDropdownItem<String>> dropdownItemList = [];
-
-  List<String> models = ['Flower', 'Plants', 'Animal'];
-
-  String? _selectedModel = 'Flower';
-
+  List<String> models = ['Plants', 'Animal'];
+  String? _selectedModel = 'Animal';
   XFile? image;
   GeminiChatController controller = Get.find();
   TextEditingController textController = TextEditingController();
+  bool isIdentified = false;
 
   Future<void> pickImage(ImageSource source) async {
     try {
@@ -32,10 +32,23 @@ class _VisionPageState extends State<VisionPage> {
       final img = await picker.pickImage(source: source);
       setState(() {
         image = img;
+        isIdentified = false;
       });
     } catch (error) {
       print(error);
     }
+  }
+
+  Future<void> saveSpeciesData(String prompt, XFile image) async {
+    final directory = await getApplicationDocumentsDirectory();
+    final imagePath = '${directory.path}/${DateTime.now().millisecondsSinceEpoch}.png';
+    final imageFile = File(image.path);
+    await imageFile.copy(imagePath);
+
+    final prefs = await SharedPreferences.getInstance();
+    final speciesList = prefs.getStringList('species_list') ?? [];
+    speciesList.add('$prompt|$imagePath');
+    await prefs.setStringList('species_list', speciesList);
   }
 
   @override
@@ -51,7 +64,6 @@ class _VisionPageState extends State<VisionPage> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-
             Container(
               margin: EdgeInsets.only(bottom: 20, top: 20),
               width: 300.w,
@@ -88,8 +100,8 @@ class _VisionPageState extends State<VisionPage> {
               width: 200.w,
               height: 300.w,
               decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 0, 0, 0),
-                  borderRadius: BorderRadius.circular(15.w)
+                color: const Color.fromARGB(255, 0, 0, 0),
+                borderRadius: BorderRadius.circular(15.w),
               ),
               child: image != null
                   ? ClipRRect(
@@ -101,7 +113,6 @@ class _VisionPageState extends State<VisionPage> {
                 borderRadius: BorderRadius.circular(50.w),
               ),
             ),
-
             SizedBox(height: 150.h,),
             Obx(() {
               if (controller.isLoading.value) {
@@ -117,20 +128,6 @@ class _VisionPageState extends State<VisionPage> {
                     ),
                     child: Row(
                       children: [
-                        // SizedBox(
-                        //   width: 200.w,
-                        //   child: _selectedModel == "Free" ? TextField(
-                        //     style: TextStyle(color: Colors.white),
-                        //     controller: textController,
-                        //     decoration: InputDecoration(
-                        //         hintText: 'Ask about the image',
-                        //         hintStyle: TextStyle(color: Colors.white),
-                        //         border: OutlineInputBorder(
-                        //             borderRadius: BorderRadius.circular(10)
-                        //         )
-                        //     ),
-                        //   ) : Container(),
-                        // ),
                         IconButton(
                           onPressed: () async {
                             showDialog(
@@ -162,26 +159,17 @@ class _VisionPageState extends State<VisionPage> {
                         ),
                         IconButton(
                           onPressed: () {
-                            if (_selectedModel == 'Free') {
-                              if (image != null && textController.text != '') {
-                                controller.geminiVisionResponse(textController.text, image!, _selectedModel);
-                              } else {
-                                Get.snackbar(
-                                    'Error', 'Image and Question cannot be empty!',
-                                    backgroundColor: Colors.amberAccent,
-                                    titleText: Text('Invalid Input', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold))
-                                );
-                              }
+                            if (image != null) {
+                              controller.geminiVisionResponse(textController.text, image!, _selectedModel);
+                              setState(() {
+                                isIdentified = true;
+                              });
                             } else {
-                              if (image != null) {
-                                controller.geminiVisionResponse(textController.text, image!, _selectedModel);
-                              } else {
-                                Get.snackbar(
-                                    'Error', 'Image cannot be empty!',
-                                    backgroundColor: Colors.amberAccent,
-                                    titleText: Text('Invalid Input', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold))
-                                );
-                              }
+                              Get.snackbar(
+                                  'Error', 'Image cannot be empty!',
+                                  backgroundColor: Colors.amberAccent,
+                                  titleText: Text('Invalid Input', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold))
+                              );
                             }
                           },
                           icon: Icon(Icons.send),
@@ -205,7 +193,25 @@ class _VisionPageState extends State<VisionPage> {
                   ),
                 );
               }
-            })
+            }),
+            if (isIdentified)
+              ElevatedButton(
+                onPressed: () async {
+                  await saveSpeciesData(controller.streamAnswer.toString(), image!);
+                  Get.snackbar(
+                      'Success', 'Species saved successfully!',
+                      backgroundColor: Colors.greenAccent,
+                      titleText: Text('Saved', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold))
+                  );
+                },
+                child: Text('Save Species'),
+              ),
+            ElevatedButton(
+              onPressed: () {
+                Get.to(SpeciesListPage());
+              },
+              child: Text('View Saved Species'),
+            ),
           ],
         ),
       ),
