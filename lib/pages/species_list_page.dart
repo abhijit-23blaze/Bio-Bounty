@@ -123,7 +123,7 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
 
   Widget _buildSpeciesCard(String imagePath, String prompt) {
     return Card(
-      color: Colors.green[400],
+      color: Colors.lightGreenAccent[100],
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
