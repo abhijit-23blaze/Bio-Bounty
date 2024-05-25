@@ -77,7 +77,7 @@ class _VisionPageState extends State<VisionPage> {
                   children: [
                     Text('Select Model', style: TextStyle(color: Colors.white, fontSize: 18.sp, fontWeight: FontWeight.bold)), // Changed text here
                     Container(
-                      width: 200.w, // Adjust width as needed
+                      width: 100.w, // Adjust width as needed
                       child: PopupMenuButton<String>(
                         color: Colors.white, // Set dropdown menu background color
                         elevation: 8, // Add elevation for better visibility
