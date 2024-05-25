@@ -18,9 +18,9 @@ class VisionPage extends StatefulWidget {
 class _VisionPageState extends State<VisionPage> {
   List<CoolDropdownItem<String>> dropdownItemList = [];
 
-  List<String> models = ['Free', 'Flower', 'Plants', 'Plant Disease', 'Vegetables', 'Animal'];
+  List<String> models = ['Flower', 'Plants', 'Animal'];
 
-  String? _selectedModel = 'Free';
+  String? _selectedModel = 'Flower';
 
   XFile? image;
   GeminiChatController controller = Get.find();
@@ -51,24 +51,7 @@ class _VisionPageState extends State<VisionPage> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 100.h,),
-            Container(
-              width: 200.w,
-              height: 200.w,
-              decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 0, 0, 0),
-                  borderRadius: BorderRadius.circular(15.w)
-              ),
-              child: image != null
-                  ? ClipRRect(
-                child: Image(image: FileImage(File(image!.path)), fit: BoxFit.cover),
-                borderRadius: BorderRadius.circular(10.w),
-              )
-                  : ClipRRect(
-                child: Image(image: AssetImage('assets/imgsearch.jpeg')),
-                borderRadius: BorderRadius.circular(50.w),
-              ),
-            ),
+
             Container(
               margin: EdgeInsets.only(bottom: 20, top: 20),
               width: 300.w,
@@ -79,7 +62,7 @@ class _VisionPageState extends State<VisionPage> {
               child: Center(
                 child: Row(
                   children: [
-                    Text('Model: ', style: TextStyle(color: Colors.white, fontSize: 18.sp, fontWeight: FontWeight.bold)),
+                    Text('', style: TextStyle(color: Colors.white, fontSize: 18.sp, fontWeight: FontWeight.bold)),
                     DropdownButton(
                       dropdownColor: Colors.purpleAccent.withOpacity(0.3),
                       items: models.map((model) {
@@ -101,6 +84,25 @@ class _VisionPageState extends State<VisionPage> {
               ),
             ),
             SizedBox(height: 50.h,),
+            Container(
+              width: 200.w,
+              height: 300.w,
+              decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 0, 0, 0),
+                  borderRadius: BorderRadius.circular(15.w)
+              ),
+              child: image != null
+                  ? ClipRRect(
+                child: Image(image: FileImage(File(image!.path)), fit: BoxFit.cover),
+                borderRadius: BorderRadius.circular(10.w),
+              )
+                  : ClipRRect(
+                child: Image(image: AssetImage('assets/imgsearch.jpeg')),
+                borderRadius: BorderRadius.circular(50.w),
+              ),
+            ),
+
+            SizedBox(height: 150.h,),
             Obx(() {
               if (controller.isLoading.value) {
                 return LoadingAnimationWidget.staggeredDotsWave(color: Colors.blueAccent, size: 50);
@@ -115,20 +117,20 @@ class _VisionPageState extends State<VisionPage> {
                     ),
                     child: Row(
                       children: [
-                        SizedBox(
-                          width: 200.w,
-                          child: _selectedModel == "Free" ? TextField(
-                            style: TextStyle(color: Colors.white),
-                            controller: textController,
-                            decoration: InputDecoration(
-                                hintText: 'Ask about the image',
-                                hintStyle: TextStyle(color: Colors.white),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10)
-                                )
-                            ),
-                          ) : Container(),
-                        ),
+                        // SizedBox(
+                        //   width: 200.w,
+                        //   child: _selectedModel == "Free" ? TextField(
+                        //     style: TextStyle(color: Colors.white),
+                        //     controller: textController,
+                        //     decoration: InputDecoration(
+                        //         hintText: 'Ask about the image',
+                        //         hintStyle: TextStyle(color: Colors.white),
+                        //         border: OutlineInputBorder(
+                        //             borderRadius: BorderRadius.circular(10)
+                        //         )
+                        //     ),
+                        //   ) : Container(),
+                        // ),
                         IconButton(
                           onPressed: () async {
                             showDialog(
