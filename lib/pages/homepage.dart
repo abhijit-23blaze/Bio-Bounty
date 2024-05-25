@@ -46,6 +46,33 @@ class _HomePageState extends State<HomePage> {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            Spacer(),
+            IconButton(
+              icon: Icon(Icons.info),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      title: Text("BioBounty is a collaborative project made by\nRitovan Dasgupta\nAbhijit Patil\nNaman Goyal"),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text("Love it!",
+                            style: TextStyle(color: Colors.green)),
+
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+            ),
           ],
         ),
       ),
