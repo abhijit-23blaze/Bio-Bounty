@@ -58,7 +58,7 @@ class _VisionPageState extends State<VisionPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 375.w,
       height: 812.h,
       child: SingleChildScrollView(

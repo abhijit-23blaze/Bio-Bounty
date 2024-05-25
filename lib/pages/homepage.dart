@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: _page(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         unselectedItemColor: Colors.grey,
         selectedItemColor: Colors.blueAccent,
         currentIndex: _selectedIndex,
