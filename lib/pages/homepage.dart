@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
-        backgroundColor: Colors.lightGreen[200],
+        backgroundColor: Colors.green[200],
         title: Row(
           children: [
             Image(
@@ -51,9 +51,9 @@ class _HomePageState extends State<HomePage> {
       ),
       body: _page(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.lightGreen[200],
-        unselectedItemColor: Colors.black,
-        selectedItemColor: Colors.brown,
+        backgroundColor: Colors.green[200],
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Colors.green,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         items: [
