@@ -1,4 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
     <application
         android:label="leaf_lens"
         android:name="${applicationName}"
