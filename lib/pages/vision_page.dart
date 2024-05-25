@@ -11,7 +11,7 @@ import 'package:cool_dropdown/models/cool_dropdown_item.dart';
 import 'species_list_page.dart';
 
 class VisionPage extends StatefulWidget {
-  const VisionPage({super.key});
+  const VisionPage({Key? key}) : super(key: key);
 
   @override
   State<VisionPage> createState() => _VisionPageState();
@@ -70,26 +70,34 @@ class _VisionPageState extends State<VisionPage> {
               height: 50.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15.w),
+                color: Colors.black, // Setting a black background color
               ),
               child: Center(
                 child: Row(
                   children: [
-                    Text('', style: TextStyle(color: Colors.white, fontSize: 18.sp, fontWeight: FontWeight.bold)),
-                    DropdownButton(
-                      dropdownColor: Colors.purpleAccent.withOpacity(0.3),
-                      items: models.map((model) {
-                        return DropdownMenuItem(
-                          child: Text(model, style: TextStyle(color: const Color.fromARGB(255, 250, 250, 250), fontWeight: FontWeight.bold)),
-                          value: model,
-                        );
-                      }).toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedModel = value;
-                        });
-                      },
-                      value: _selectedModel,
-                      icon: Icon(Icons.arrow_drop_down_circle_outlined),
+                    Text('Select Model', style: TextStyle(color: Colors.white, fontSize: 18.sp, fontWeight: FontWeight.bold)), // Changed text here
+                    Container(
+                      width: 200.w, // Adjust width as needed
+                      child: PopupMenuButton<String>(
+                        color: Colors.white, // Set dropdown menu background color
+                        elevation: 8, // Add elevation for better visibility
+                        onSelected: (value) {
+                          setState(() {
+                            _selectedModel = value;
+                          });
+                        },
+                        itemBuilder: (BuildContext context) {
+                          return models.map((String model) {
+                            return PopupMenuItem<String>(
+                              value: model,
+                              child: Text(
+                                model,
+                                style: TextStyle(color: Colors.black), // Text color of menu items
+                              ),
+                            );
+                          }).toList();
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -109,7 +117,7 @@ class _VisionPageState extends State<VisionPage> {
                 borderRadius: BorderRadius.circular(10.w),
               )
                   : ClipRRect(
-                child: Image(image: AssetImage('assets/imgsearch.jpeg')),
+                child: Image(image: AssetImage('assets/imgsearch.png')),
                 borderRadius: BorderRadius.circular(50.w),
               ),
             ),
