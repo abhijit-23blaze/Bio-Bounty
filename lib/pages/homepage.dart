@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:leaf_lens/controllers/gemini_controller.dart';
 import 'package:get/get.dart';
 import 'package:leaf_lens/pages/chat_page.dart';
+import 'package:leaf_lens/pages/species_list_page.dart';
 import 'package:leaf_lens/pages/vision_page.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
@@ -41,7 +42,7 @@ class _HomePageState extends State<HomePage> {
             Text(
               'Bio Bounty',
               style: TextStyle(
-                color: Colors.blueAccent,
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -52,7 +53,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.black,
         unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.blueAccent,
+        selectedItemColor: Colors.white,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         items: [
@@ -80,7 +81,7 @@ class _HomePageState extends State<HomePage> {
       case 1:
         return LeaderboardPage();
       case 2:
-        return ProfilePage();
+        return SpeciesListPage();
       default:
         return VisionPage();
     }
