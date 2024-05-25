@@ -106,7 +106,7 @@ class LoginPage extends StatelessWidget {
                     },
                     child: Text(
                       'Don\'t have an account? Sign Up',
-                      style: TextStyle(color: Colors.greenAccent),
+                      style: TextStyle(color: Colors.green),
                     ),
                   ),
                 ],
