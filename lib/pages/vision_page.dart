@@ -117,7 +117,7 @@ class _VisionPageState extends State<VisionPage> {
                 borderRadius: BorderRadius.circular(10.w),
               )
                   : ClipRRect(
-                child: Image(image: AssetImage('assets/imgsearch.jpeg')),
+                child: Image(image: AssetImage('assets/imgsearch.png')),
                 borderRadius: BorderRadius.circular(50.w),
               ),
             ),
