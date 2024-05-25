@@ -26,7 +26,7 @@ class GeminiChatController extends GetxController{
         if (model=='Free'){
           quary=text;
         }else{
-          quary='Can you please fill the following information in the given format regarding the $model in the image, Name :   , Species :    , Habitat :    , Interesting Trait :    ,and also please rate the species on the basis of rarity in 1 to 10 where 10 is very rare ';
+          quary='Can you please fill the following information in the given format regarding the $model in the image, Name :   , Species :    , Habitat :    , Interesting Trait :    ,and also please rate the species on the basis of rarity in 1 to 10 where 10 is very rare in the format "/10" only ';
 
         }
         //final ByteData data = await rootBundle.load('assets/leaf.png');
