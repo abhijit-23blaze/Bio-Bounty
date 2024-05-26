@@ -6,6 +6,12 @@
 
 Welcome to the Biodiversity Exploration App! This Flutter-based app gamifies the exploration of nature by encouraging users to photograph plants and animals. The app identifies the species and provides additional information about each one. Users earn bio points for each identification, and for every 10 bio points, we plant a tree to promote biodiversity and conservation. 🌳
 
+## 📲 Download APK
+
+You can download the latest APK from our GitHub repository:
+
+[Download APK](assets/app-release.apk)
+
 ## Features
 
 - 🐾 **Species Identification**: Snap photos of plants and animals, and our AI will identify the species and provide detailed information.
@@ -38,11 +44,7 @@ Here are some screenshots of our app:
 ### Educational Content
 ![ed_content](https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/6506a657-e423-46f1-a9d6-2cd8b066f775)
 
-## 📲 Download APK
 
-You can download the latest APK from our GitHub repository:
-
-[Download APK](assets/app-release.apk)
 
 ## 🚀 Installation
 
