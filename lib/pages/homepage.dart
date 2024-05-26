@@ -5,8 +5,6 @@ import 'package:get/get.dart';
 import 'package:leaf_lens/pages/chat_page.dart';
 import 'package:leaf_lens/pages/species_list_page.dart';
 import 'package:leaf_lens/pages/vision_page.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
-
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -29,9 +27,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black54,
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        backgroundColor: Colors.green[300],
+        backgroundColor: Colors.green[700],
         title: Row(
           children: [
             Image(
@@ -42,13 +40,14 @@ class _HomePageState extends State<HomePage> {
             Text(
               'Bio Bounty',
               style: TextStyle(
-                color: Colors.black,
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
+                fontSize: 24.sp,
               ),
             ),
             Spacer(),
             IconButton(
-              icon: Icon(Icons.info),
+              icon: Icon(Icons.info_outline, color: Colors.white),
               onPressed: () {
                 showDialog(
                   context: context,
@@ -57,15 +56,72 @@ class _HomePageState extends State<HomePage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
-                      title: Text("BioBounty is a collaborative project made by\nRitovan Dasgupta\nAbhijit Patil\nNaman Goyal"),
+                      title: Text("Made by"),
+                      content: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            "Abhijit Patil (lead)",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            "Flutter-dev",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            "Ritowan Gupta",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            "Flutter dev",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            "Naman Goyal",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            "Designer",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
                       actions: [
                         TextButton(
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          child: Text("Love it!",
-                            style: TextStyle(color: Colors.green)),
-
+                          child: Text(
+                            "💖Love it!",
+                            style: TextStyle(color: Colors.pink),
+                          ),
                         ),
                       ],
                     );
@@ -78,7 +134,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: _page(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.green[300],
+        backgroundColor: Colors.green[200],
         unselectedItemColor: Colors.white,
         selectedItemColor: Colors.black,
         currentIndex: _selectedIndex,
@@ -120,8 +176,6 @@ class _HomePageState extends State<HomePage> {
 
 
 
-
-
 class LeaderboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -144,9 +198,9 @@ class LeaderboardPage extends StatelessWidget {
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black),
             ),
             SizedBox(height: 20),
-            _buildLeaderboardItem(1, 'Abhijit', 500, 'assets/john_doe.jpg', gradientColors: [Color(0xFFFFAFBD), Color(0xFFC9FFBF)]),
-            _buildLeaderboardItem(2, 'Riotwan', 450, 'assets/jane_smith.jpg', gradientColors: [Color(0xFF74EBD5), Color(0xFFACB6E5)]),
-            _buildLeaderboardItem(3, 'Naman', 400, 'assets/alice_johnson.jpg', gradientColors: [Color(0xFFFFE3E3), Color(0xFFDBE7FC)]),
+            _buildLeaderboardItem(1, 'Abhijit', 500, 'assets/abhijit.png', gradientColors: [Color(0xFFFFAFBD), Color(0xFFC9FFBF)]),
+            _buildLeaderboardItem(2, 'Riotwan', 450, 'assets/robot.png', gradientColors: [Color(0xFF74EBD5), Color(0xFFACB6E5)]),
+            _buildLeaderboardItem(3, 'Naman', 400, 'assets/leaf.png', gradientColors: [Color(0xFFFFE3E3), Color(0xFFDBE7FC)]),
           ],
         ),
       ),

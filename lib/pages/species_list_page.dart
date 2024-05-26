@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path_provider/path_provider.dart';
 
 class SpeciesListPage extends StatefulWidget {
   @override
@@ -8,7 +9,9 @@ class SpeciesListPage extends StatefulWidget {
 }
 
 class _SpeciesListPageState extends State<SpeciesListPage> {
-  List<Map<String, String>> speciesList = [];
+  List<Map<String, dynamic>> speciesList = [];
+  int totalBioPoints = 0;
+  int treesPlanted = 0;
 
   @override
   void initState() {
@@ -19,16 +22,43 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
   Future<void> loadSpeciesData() async {
     final prefs = await SharedPreferences.getInstance();
     final savedList = prefs.getStringList('species_list') ?? [];
-    final List<Map<String, String>> loadedList = [];
+    final List<Map<String, dynamic>> loadedList = [];
+    int bioPoints = 0;
 
     for (var item in savedList) {
       final splitItem = item.split('|');
-      loadedList.add({'prompt': splitItem[0], 'imagePath': splitItem[1]});
+      if (splitItem.length < 2) {
+        continue;
+      }
+      final prompt = splitItem[0];
+      final imagePath = splitItem[1];
+      final rarityScale = int.tryParse(prompt.split(' ').last) ?? 0;
+      bioPoints += rarityScale;
+
+      loadedList.add({
+        'prompt': prompt,
+        'imagePath': imagePath,
+        'rarityScale': rarityScale,
+      });
     }
 
     setState(() {
       speciesList = loadedList;
+      totalBioPoints = bioPoints;
     });
+  }
+
+  void donateBioPoints() {
+    if (totalBioPoints >= 10) {
+      setState(() {
+        treesPlanted += totalBioPoints ~/ 10;
+        totalBioPoints %= 10;
+      });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Not enough bio points to plant a tree!')),
+      );
+    }
   }
 
   @override
@@ -42,11 +72,23 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
           children: [
             Container(
               padding: EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Colors.green[100],
+                borderRadius: BorderRadius.circular(15.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 7,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
               child: Column(
                 children: [
                   CircleAvatar(
                     radius: 50,
-                    backgroundImage: AssetImage('assets/profile_picture.png'),
+                    backgroundImage: AssetImage('assets/abhijit.png'),
                   ),
                   SizedBox(height: 16.0),
                   Text(
@@ -59,10 +101,10 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
                   ),
                   SizedBox(height: 8.0),
                   Text(
-                    'Skill Level 1',
+                    'Skill Level 1 🔆',
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: Colors.black,
+                      color: Colors.black54,
                     ),
                   ),
                   SizedBox(height: 8.0),
@@ -73,10 +115,41 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
                   ),
                   SizedBox(height: 16.0),
-
-                  SizedBox(height: 16.0),
                   Text(
-                    'Discovered Species: ${speciesList.length}',
+                    'Discovered Species: ${speciesList.length} 🐼',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  SizedBox(height: 8.0),
+                  Text(
+                    'Total Bio Points: $totalBioPoints 🪙',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  SizedBox(height: 16.0),
+                  ElevatedButton(
+                    onPressed: donateBioPoints,
+                    style: ElevatedButton.styleFrom(
+                      // primary: Colors.green,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                    ),
+                    child: Text(
+                      'Donate Bio Points to Plant Trees 🥺🙏',
+                      style: TextStyle(fontSize: 12.0),
+                    ),
+                  ),
+                  SizedBox(height: 8.0),
+                  Text(
+                    'Trees Planted: $treesPlanted 🌳',
                     style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold,
@@ -87,7 +160,6 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
               ),
             ),
             SizedBox(height: 20.0),
-            // Species list items divided into two groups
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -96,19 +168,20 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
                     children: speciesList
                         .sublist(0, (speciesList.length / 2).ceil())
                         .map((species) {
-                      final imagePath = species['imagePath']!;
-                      final prompt = species['prompt']!;
+                      final imagePath = species['imagePath'];
+                      final prompt = species['prompt'];
                       return _buildSpeciesCard(imagePath, prompt);
                     }).toList(),
                   ),
                 ),
+                SizedBox(width: 10.0),
                 Expanded(
                   child: Column(
                     children: speciesList
                         .sublist((speciesList.length / 2).ceil())
                         .map((species) {
-                      final imagePath = species['imagePath']!;
-                      final prompt = species['prompt']!;
+                      final imagePath = species['imagePath'];
+                      final prompt = species['prompt'];
                       return _buildSpeciesCard(imagePath, prompt);
                     }).toList(),
                   ),
@@ -123,20 +196,25 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
 
   Widget _buildSpeciesCard(String imagePath, String prompt) {
     return Card(
-      color: Colors.lightGreenAccent[100],
+      color: Colors.lightGreen[200],
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(15.0),
       ),
+      margin: EdgeInsets.symmetric(vertical: 8.0),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-              child: Image.file(
-                File(imagePath),
-                fit: BoxFit.cover,
-                height: 120,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: Image.file(
+                  File(imagePath),
+                  fit: BoxFit.cover,
+                  height: 120,
+                  width: double.infinity,
+                ),
               ),
             ),
             SizedBox(height: 10.0),

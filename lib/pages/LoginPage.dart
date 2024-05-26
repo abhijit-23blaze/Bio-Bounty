@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../main.dart';
 import 'SignUpPage.dart';
 import 'homepage.dart';
@@ -16,6 +15,10 @@ class LoginPage extends StatelessWidget {
           image: DecorationImage(
             image: AssetImage('assets/background_image.jpg'),
             fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(
+              Colors.black.withOpacity(0.6),
+              BlendMode.darken,
+            ),
           ),
         ),
         child: Center(
@@ -27,59 +30,44 @@ class LoginPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'Welcome Back!',
+                    '🌿Bio Bounty',
                     style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 40,
                       fontWeight: FontWeight.bold,
-                      color: Colors.green,
+                      color: Colors.black,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Welcome Back! 👋',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
                     ),
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 20),
-                  TextField(
+                  _buildTextField(
                     controller: emailController,
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                      filled: true,
-                      fillColor: Colors.white.withOpacity(0.8),
-                    ),
+                    labelText: 'Email',
+                    icon: Icons.email,
                   ),
                   SizedBox(height: 20),
-                  TextField(
+                  _buildTextField(
                     controller: passwordController,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      filled: true,
-                      fillColor: Colors.white.withOpacity(0.8),
-                    ),
+                    labelText: 'Password',
+                    icon: Icons.lock,
                     obscureText: true,
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
-                      if (emailController.text.isEmpty ||
-                          passwordController.text.isEmpty) {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: Text('Error'),
-                              content: Text(
-                                  'Please fill in both email and password fields.'),
-                              actions: <Widget>[
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text('OK'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
+                      if (emailController.text.isEmpty || passwordController.text.isEmpty) {
+                        _showErrorDialog(context, 'Error', 'Please fill in both email and password fields.');
                       } else {
                         // Perform login functionality here
-                        // For now, navigate to Home Page after login
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
@@ -91,12 +79,20 @@ class LoginPage extends StatelessWidget {
                     child: Text('Login'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green,
+                      foregroundColor: Colors.white,
+                      padding: EdgeInsets.symmetric(vertical: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      textStyle: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   SizedBox(height: 10),
                   TextButton(
                     onPressed: () {
-                      // Navigate to Sign Up Page
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -115,6 +111,48 @@ class LoginPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildTextField({required TextEditingController controller, required String labelText, required IconData icon, bool obscureText = false}) {
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: labelText,
+        prefixIcon: Icon(icon, color: Colors.green),
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.8),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30),
+          borderSide: BorderSide.none,
+        ),
+        contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+      ),
+      obscureText: obscureText,
+      style: TextStyle(color: Colors.black),
+    );
+  }
+
+  void _showErrorDialog(BuildContext context, String title, String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          title: Text(title),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
