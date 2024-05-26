@@ -33,17 +33,16 @@ Watch our demo video on YouTube to see the app in action:
 Here are some screenshots of our app:
 
 ### Home Screen
-![home_screen](https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/fc618c18-0685-4420-977b-644336dd1231)
-
+<img src="https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/fc618c18-0685-4420-977b-644336dd1231" alt="home_screen" width="200">
 
 ### Species Identification
-![species](https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/dd053448-049c-42c0-a3ef-181765ab5e04)
+<img src="https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/dd053448-049c-42c0-a3ef-181765ab5e04" alt="species" width="200">
 
 ### Bio Points
-![bio_points](https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/3e03539f-a8d3-4b92-b03e-00ed4f0a797c)
+<img src="https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/3e03539f-a8d3-4b92-b03e-00ed4f0a797c" alt="bio_points" width="200">
 
 ### Educational Content
-![ed_content](https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/6506a657-e423-46f1-a9d6-2cd8b066f775)
+<img src="https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/6506a657-e423-46f1-a9d6-2cd8b066f775" alt="ed_content" width="200">
 
 
 
