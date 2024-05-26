@@ -40,7 +40,7 @@ Here are some screenshots of our app:
 
 You can download the latest APK from our GitHub repository:
 
-[Download APK](link_to_apk_in_repo)
+[Download APK](assets/app-release.apk)
 
 ## 🚀 Installation
 
