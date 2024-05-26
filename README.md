@@ -1,10 +1,17 @@
 # 🌿 Biodiversity Exploration App 🌍
+![tourist](https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/bba20ca8-c90e-4991-bd9c-e4d40fc61bad)
 
-![App Logo](link_to_logo_image)
 
 ## Introduction
 
 Welcome to the Biodiversity Exploration App! This Flutter-based app gamifies the exploration of nature by encouraging users to photograph plants and animals. The app identifies the species and provides additional information about each one. Users earn bio points for each identification, and for every 10 bio points, we plant a tree to promote biodiversity and conservation. 🌳
+
+## 📲 Download APK
+
+You can download the latest APK from our GitHub repository:
+
+[Download APK](assets/app-release.apk)
+
 
 ## Features
 
@@ -18,29 +25,26 @@ Welcome to the Biodiversity Exploration App! This Flutter-based app gamifies the
 
 Watch our demo video on YouTube to see the app in action:
 
-[![Watch the video](link_to_thumbnail_image)](https://www.youtube.com/watch?v=your_video_id)
+[Watch the video](https://www.youtube.com/watch?v=O_VXNoIBfco)
+
 
 ## 📸 Screenshots
 
 Here are some screenshots of our app:
 
 ### Home Screen
-![Home Screen](link_to_home_screen_image)
+<img src="https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/fc618c18-0685-4420-977b-644336dd1231" alt="home_screen" width="200">
 
 ### Species Identification
-![Species Identification](link_to_species_identification_image)
+<img src="https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/dd053448-049c-42c0-a3ef-181765ab5e04" alt="species" width="200">
 
 ### Bio Points
-![Bio Points](link_to_bio_points_image)
+<img src="https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/3e03539f-a8d3-4b92-b03e-00ed4f0a797c" alt="bio_points" width="200">
 
 ### Educational Content
-![Educational Content](link_to_educational_content_image)
+<img src="https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/6506a657-e423-46f1-a9d6-2cd8b066f775" alt="ed_content" width="200">
 
-## 📲 Download APK
 
-You can download the latest APK from our GitHub repository:
-
-[Download APK](assets/app-release.apk)
 
 ## 🚀 Installation
 
