@@ -1,6 +1,6 @@
 # 🌿 Biodiversity Exploration App 🌍
+![tourist](https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/bba20ca8-c90e-4991-bd9c-e4d40fc61bad)
 
-![App Logo](link_to_logo_image)
 
 ## Introduction
 
@@ -20,6 +20,7 @@ Watch our demo video on YouTube to see the app in action:
 
 [![Watch the video](link_to_thumbnail_image)](https://www.youtube.com/watch?v=your_video_id)
 
+
 ## 📸 Screenshots
 
 Here are some screenshots of our app:
@@ -29,13 +30,13 @@ Here are some screenshots of our app:
 
 
 ### Species Identification
-![species](https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/dd1fdc5a-47d4-483e-b882-40f723ec651c)
+![species](https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/dd053448-049c-42c0-a3ef-181765ab5e04)
 
 ### Bio Points
-![bio_points](https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/50d04fb2-a322-4c23-ab54-4b7a47822d0c)
+![bio_points](https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/3e03539f-a8d3-4b92-b03e-00ed4f0a797c)
 
 ### Educational Content
-![ed_content](https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/7937754d-2487-4b21-810d-74a0b9d8a660)
+![ed_content](https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/6506a657-e423-46f1-a9d6-2cd8b066f775)
 
 ## 📲 Download APK
 
