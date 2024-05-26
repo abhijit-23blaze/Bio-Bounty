@@ -12,6 +12,7 @@ You can download the latest APK from our GitHub repository:
 
 [Download APK](assets/app-release.apk)
 
+
 ## Features
 
 - 🐾 **Species Identification**: Snap photos of plants and animals, and our AI will identify the species and provide detailed information.
