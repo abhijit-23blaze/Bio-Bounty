@@ -25,7 +25,7 @@ You can download the latest APK from our GitHub repository:
 
 Watch our demo video on YouTube to see the app in action:
 
-[[![Watch the video](link_to_thumbnail_image)](https://www.youtube.com/watch?v=your_video_id)](https://www.youtube.com/watch?v=O_VXNoIBfco)
+[Watch the video](https://www.youtube.com/watch?v=O_VXNoIBfco)
 
 
 ## 📸 Screenshots
