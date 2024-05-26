@@ -25,16 +25,17 @@ Watch our demo video on YouTube to see the app in action:
 Here are some screenshots of our app:
 
 ### Home Screen
-![Home Screen](link_to_home_screen_image)
+![home_screen](https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/fc618c18-0685-4420-977b-644336dd1231)
+
 
 ### Species Identification
-![Species Identification](link_to_species_identification_image)
+![species](https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/dd1fdc5a-47d4-483e-b882-40f723ec651c)
 
 ### Bio Points
-![Bio Points](link_to_bio_points_image)
+![bio_points](https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/50d04fb2-a322-4c23-ab54-4b7a47822d0c)
 
 ### Educational Content
-![Educational Content](link_to_educational_content_image)
+![ed_content](https://github.com/abhijit-23blaze/Bio-Bounty/assets/169768803/7937754d-2487-4b21-810d-74a0b9d8a660)
 
 ## 📲 Download APK
 
