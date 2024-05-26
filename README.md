@@ -10,7 +10,7 @@ Welcome to the Biodiversity Exploration App! This Flutter-based app gamifies the
 
 You can download the latest APK from our GitHub repository:
 
-[Download APK](assets/app-release.apk)
+[Download APK](assets/app-release.apk) from here by clicking on the download raw button, then go to the download section in your browser and install teh apk from there
 
 
 ## Features
