@@ -51,7 +51,7 @@ class LoginPage extends StatelessWidget {
                   SizedBox(height: 20),
                   _buildTextField(
                     controller: emailController,
-                    labelText: 'Email',
+                    labelText: 'Username',
                     icon: Icons.email,
                   ),
                   SizedBox(height: 20),
