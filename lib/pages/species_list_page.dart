@@ -88,7 +88,7 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
                 children: [
                   CircleAvatar(
                     radius: 50,
-                    backgroundImage: AssetImage('assets/abhijit.png'),
+                    backgroundImage: AssetImage('assets/man.png'),
                   ),
                   SizedBox(height: 16.0),
                   Text(

@@ -51,8 +51,8 @@ class LoginPage extends StatelessWidget {
                   SizedBox(height: 20),
                   _buildTextField(
                     controller: emailController,
-                    labelText: 'Email',
-                    icon: Icons.email,
+                    labelText: 'Username',
+                    icon: Icons.person,
                   ),
                   SizedBox(height: 20),
                   _buildTextField(
@@ -65,7 +65,7 @@ class LoginPage extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       if (emailController.text.isEmpty || passwordController.text.isEmpty) {
-                        _showErrorDialog(context, 'Error', 'Please fill in both email and password fields.');
+                        _showErrorDialog(context, 'Error', 'Please fill in both username and password fields.');
                       } else {
                         // Perform login functionality here
                         Navigator.pushReplacement(
