@@ -12,11 +12,13 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
   List<Map<String, dynamic>> speciesList = [];
   int totalBioPoints = 0;
   int treesPlanted = 0;
+  String username = '';
 
   @override
   void initState() {
     super.initState();
     loadSpeciesData();
+    loadUsername();
   }
 
   Future<void> loadSpeciesData() async {
@@ -45,6 +47,13 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
     setState(() {
       speciesList = loadedList;
       totalBioPoints = bioPoints;
+    });
+  }
+
+  Future<void> loadUsername() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      username = prefs.getString('username') ?? 'Guest';
     });
   }
 
@@ -92,7 +101,7 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
                   ),
                   SizedBox(height: 16.0),
                   Text(
-                    'Abhijit Patil',
+                    username,
                     style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
@@ -136,7 +145,6 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
                   ElevatedButton(
                     onPressed: donateBioPoints,
                     style: ElevatedButton.styleFrom(
-                      // primary: Colors.green,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),

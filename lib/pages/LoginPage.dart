@@ -3,6 +3,8 @@ import '../main.dart';
 import 'SignUpPage.dart';
 import 'homepage.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 class LoginPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -63,10 +65,14 @@ class LoginPage extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (emailController.text.isEmpty || passwordController.text.isEmpty) {
                         _showErrorDialog(context, 'Error', 'Please fill in both username and password fields.');
                       } else {
+                        // Save the username
+                        final prefs = await SharedPreferences.getInstance();
+                        await prefs.setString('username', emailController.text);
+
                         // Perform login functionality here
                         Navigator.pushReplacement(
                           context,
