@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:leaf_lens/pages/chat_page.dart';
 import 'package:leaf_lens/pages/species_list_page.dart';
 import 'package:leaf_lens/pages/vision_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,12 +17,28 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   GeminiChatController geminiChatController = Get.find();
+  int totalBioPoints = 0;
+  String username = '';
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
       geminiChatController.streamAnswer.value = "";
     });
+  }
+
+  Future<void> loadUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      totalBioPoints = prefs.getInt('total_bio_points') ?? 0;
+      username = prefs.getString('username') ?? 'You';
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadUserData();
   }
 
   @override
@@ -162,7 +179,7 @@ class _HomePageState extends State<HomePage> {
       case 0:
         return VisionPage();
       case 1:
-        return LeaderboardPage();
+        return LeaderboardPage(userBioPoints: totalBioPoints, username: username);
       case 2:
         return SpeciesListPage();
       default:
@@ -172,22 +189,16 @@ class _HomePageState extends State<HomePage> {
 }
 
 
-
-
-
-
 class LeaderboardPage extends StatelessWidget {
+  final int userBioPoints;
+  final String username;
+
+  LeaderboardPage({required this.userBioPoints, required this.username});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          // gradient: LinearGradient(
-          //   begin: Alignment.topCenter,
-          //   end: Alignment.bottomCenter,
-          //   colors: [Color(0xFF91EAE4), Color(0xFF86A8E7)],
-          // ),
-        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -201,6 +212,7 @@ class LeaderboardPage extends StatelessWidget {
             _buildLeaderboardItem(1, 'Abhijit', 500, 'assets/abhijit.png', gradientColors: [Color(0xFFFFAFBD), Color(0xFFC9FFBF)]),
             _buildLeaderboardItem(2, 'Ritovan', 450, 'assets/ritovan.jpg', gradientColors: [Color(0xFF74EBD5), Color(0xFFACB6E5)]),
             _buildLeaderboardItem(3, 'Naman', 400, 'assets/robot.png', gradientColors: [Color(0xFFFFE3E3), Color(0xFFDBE7FC)]),
+            _buildLeaderboardItem(4, username, userBioPoints, 'assets/man.png', gradientColors: [Color(0xFFE8F7FF), Color(0xFFD1F2EB)]),
           ],
         ),
       ),

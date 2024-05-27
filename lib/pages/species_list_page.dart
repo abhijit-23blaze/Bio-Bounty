@@ -34,7 +34,7 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
       }
       final prompt = splitItem[0];
       final imagePath = splitItem[1];
-      final rarityScale = int.tryParse(prompt.split(' ').last) ?? 0;
+      final rarityScale = int.tryParse(splitItem.length > 2 ? splitItem[2] : '0') ?? 0;
       bioPoints += rarityScale;
 
       loadedList.add({
@@ -47,6 +47,7 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
     setState(() {
       speciesList = loadedList;
       totalBioPoints = bioPoints;
+      prefs.setInt('total_bio_points', totalBioPoints);
     });
   }
 
@@ -62,6 +63,9 @@ class _SpeciesListPageState extends State<SpeciesListPage> {
       setState(() {
         treesPlanted += totalBioPoints ~/ 10;
         totalBioPoints %= 10;
+        SharedPreferences.getInstance().then((prefs) {
+          prefs.setInt('total_bio_points', totalBioPoints);
+        });
       });
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
