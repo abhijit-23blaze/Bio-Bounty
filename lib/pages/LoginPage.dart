@@ -52,7 +52,7 @@ class LoginPage extends StatelessWidget {
                   _buildTextField(
                     controller: emailController,
                     labelText: 'Username',
-                    icon: Icons.email,
+                    icon: Icons.supervised_user_circle,
                   ),
                   SizedBox(height: 20),
                   _buildTextField(
